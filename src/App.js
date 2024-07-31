@@ -21,6 +21,8 @@ function App() {
         </Routes>
         <Footer />
         <p>test </p>
+        <p>hello </p>
+
       </div>
     </BrowserRouter>
   );
