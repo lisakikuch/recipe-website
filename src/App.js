@@ -21,10 +21,10 @@ function App() {
         </Routes>
         <Footer />
         <p>test 2</p>
-        <p>hello </p>
+        <p>hello 2 </p>
 
       </div>
-    </BrowserRouter>
+    </BrowserRouter> 
   );
 }
 
