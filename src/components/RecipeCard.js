@@ -31,7 +31,7 @@ function RecipeCard({ recipe, keptRecipes, addKeptRecipe, removeKeptRecipe }) {
             </div>
             </Link>
             <button onClick={handleKeepClick}>
-                {isKept ? 'Unkeep' : 'Keep'}
+                {isKept ? 'Remove' : 'Favorite'}
             </button>
         </div>
     )

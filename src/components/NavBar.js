@@ -19,9 +19,9 @@ function NavBar() {
     return (
         <nav>
             <Link to="/">Home</Link> | {" "}
+            <Link to="/about">About</Link>  | {" "}
             <Link to="/recipes">Recipes</Link> | {" "}
-            <button onClick={handleScrollToKeep}>Keep</button>  | {" "}
-            <Link to="/about">About</Link>
+            <button onClick={handleScrollToKeep}>Favorites</button>
         </nav>
     )
 }

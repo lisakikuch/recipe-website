@@ -59,7 +59,7 @@ function Recipes({ keptRecipes, addKeptRecipe, removeKeptRecipe }) {
                     : "No Recipes Found."}
             </div>
 
-            <h1>Kept Recipes</h1>
+            <h1>Favorite Recipes</h1>
             <div className='recipes' id='keep'>
                 {keptRecipes.length > 0 ? keptRecipes.map((recipe) => (
                     <RecipeCard
@@ -70,7 +70,7 @@ function Recipes({ keptRecipes, addKeptRecipe, removeKeptRecipe }) {
                         removeKeptRecipe={removeKeptRecipe}
                     />
                 ))
-                    : "No Kept Recipes Found."}
+                    : "No Favorite Recipes Found."}
             </div>
             
         </div>
