@@ -1,5 +1,5 @@
 import './App.css';
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Home from './components/Home';
 import Recipes from './components/Recipes';
@@ -9,22 +9,34 @@ import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 
 function App() {
+  const [keptRecipes, setKeptRecipes] = useState([])
+
+  const addKeptRecipe = (recipe) => {
+    setKeptRecipes((prevKept) => [...prevKept, recipe])
+  }
+
+  const removeKeptRecipe = (idMeal) => {
+    setKeptRecipes((prevKept) => prevKept.filter((recipe) => recipe.idMeal !== idMeal))
+  }
+
   return (
     <BrowserRouter>
       <div className="App">
         <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/recipes" element={<Recipes />} />
-          <Route path="/recipes/:id" element={<RecipeDetails />} />
+          <Route path="/recipes" element={<Recipes
+            keptRecipes={keptRecipes}
+            addKeptRecipe={addKeptRecipe}
+            removeKeptRecipe={removeKeptRecipe} />} />
+          <Route path="/recipes/:id" element={<RecipeDetails
+            addKeptRecipe={addKeptRecipe}
+            removeKeptRecipe={removeKeptRecipe} />} />
           <Route path="/about" element={<About />} />
         </Routes>
         <Footer />
-        <p>test 2</p>
-        <p>hello 2 </p>
-
       </div>
-    </BrowserRouter> 
+    </BrowserRouter>
   );
 }
 

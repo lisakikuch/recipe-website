@@ -7,7 +7,8 @@ import SearchBar from './SearchBar';
 
 const apiUrl = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
 
-function Recipes() {
+function Recipes({ keptRecipes, addKeptRecipe, removeKeptRecipe }) {
+
     // State Management: Manages the state for loading, search query, and recipes.
     const [isLoading, setIsLoading] = useState(false)
     const [query, setQuery] = useState("")
@@ -36,22 +37,42 @@ function Recipes() {
 
     return (
         <div className='container'>
+
             <SearchBar
                 handleSubmit={handleSubmit}
                 value={query}
                 onChange={event => setQuery(event.target.value)}
                 isLoading={isLoading}
             />
+
             <h1>All Recipes</h1>
             <div className='recipes'>
                 {recipes.length > 0 ? recipes.map(recipe => (
                     <RecipeCard
                         key={recipe.idMeal}
                         recipe={recipe}
+                        keptRecipes={keptRecipes}
+                        addKeptRecipe={addKeptRecipe}
+                        removeKeptRecipe={removeKeptRecipe}
                     />
                 ))
                     : "No Recipes Found."}
             </div>
+
+            <h1>Kept Recipes</h1>
+            <div className='recipes' id='keep'>
+                {keptRecipes.length > 0 ? keptRecipes.map((recipe) => (
+                    <RecipeCard
+                        key={recipe.idMeal}
+                        recipe={recipe}
+                        keptRecipes={keptRecipes}
+                        addKeptRecipe={addKeptRecipe}
+                        removeKeptRecipe={removeKeptRecipe}
+                    />
+                ))
+                    : "No Kept Recipes Found."}
+            </div>
+            
         </div>
     )
 }

@@ -3,8 +3,17 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 
-function RecipeCard({ recipe }) {
+function RecipeCard({ recipe, keptRecipes, addKeptRecipe, removeKeptRecipe }) {
     const { idMeal, strMeal, strCategory, strMealThumb } = recipe
+    const isKept = keptRecipes.some((r)=> r.idMeal === idMeal)
+
+    const handleKeepClick =()=> {
+        if (isKept) {
+            removeKeptRecipe(idMeal)
+        } else {
+            addKeptRecipe(recipe)
+        }
+    }
 
 // Displays a recipe's image, name, and category.
 // The Link navigates to the detailed view of the recipe when the card is clicked.
@@ -21,6 +30,9 @@ function RecipeCard({ recipe }) {
                 <h2>{strMeal}</h2>
             </div>
             </Link>
+            <button onClick={handleKeepClick}>
+                {isKept ? 'Unkeep' : 'Keep'}
+            </button>
         </div>
     )
 }
