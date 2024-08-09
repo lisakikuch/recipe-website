@@ -34,14 +34,42 @@ function RecipeDetails() {
         return <div>No recipe found.</div>
     }
 
+    // Shows the ingredients and measurements side by side
+    const getIngredients = () => {
+        let ingredients = [];
+        for (let i = 1; i <= 20; i++) {
+            const ingredient = recipe[`strIngredient${i}`];
+            const measure = recipe[`strMeasure${i}`];
+            if (ingredient && ingredient.trim() !== "") {
+                ingredients.push(`${measure.trim()} ${ingredient.trim()}`);
+            }
+        }
+        return ingredients;
+    };
+
+    const ingredientsList = getIngredients();
+
+    // Adds a break after each cooking instruction step
+    const renderInstructions = () => {
+        const steps = recipe.strInstructions.split(/\r?\n/)
+        return steps.map((step, index) => (
+            <p key={index}>{step}</p>
+        ))
+    }
+
     // Displays the recipe's name, image, ingredients, and instructions.
     return (
         <div>
             <h1>{recipe.strMeal}</h1>
             <img src={recipe.strMealThumb} alt={recipe.strMeal} />
             <h2>Ingredients</h2>
+            <ul>
+                {ingredientsList.map((ingredient, index) => (
+                    <li key={index}>{ingredient}</li>
+                ))}
+            </ul>
             <h2>Instructions</h2>
-            <p>{recipe.strInstructions}</p>
+            <p>{renderInstructions()}</p>
         </div>
     )
 }
